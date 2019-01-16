@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Inventário Mercadinho - Início</title>
+<link rel="stylesheet" type="text/css"
+	href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/bootstrap-vue.css">
+</head>
+
+<body>
+
+
+	<div id="inicio" class="container-fluid table" >
+		<h4>Lista de Produtos</h4>
+		<table>
+		  <tr>
+			<th>Nome</th>
+			<th>Fabricante</th>
+			<th>Volume</th>
+			<th>Unidade</th>
+			<th>Estoque</th>
+			<th></th>
+			<th></th>
+		  </tr>
+		  <tbody id="event-table" >
+			<tr v-for="produto in listaProdutos">
+			  <td>{{ produto.nome }}</td> 
+			  <td>{{ produto.fabricante.nome }}</td> 
+			  <td>{{ produto.volume }}</td> 
+			  <td>{{ produto.unidade }}</td> 
+			  <td>{{ produto.estoque }}</td>
+			  <td><span @click="">&#9998;</span>
+				<span  @click="">&#10006;</span>
+			  </td>
+			</tr>
+		  </tbody>
+		</table>
+	  </div>
+
+	<script src="resources/js/vue.js"></script>
+	<script src="resources/js/axios.min.js"></script>
+	<script src="resources/js/bootstrap-vue.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/index.js"></script>
+</body>
+</html>
