@@ -1,5 +1,4 @@
-# mercado
-
+# processo-seletivo
 O projeto é um  sistema de estoque de supermercado no qual 
 já é possível **exibir** todos os produtos existentes.
 
