@@ -31,8 +31,10 @@ escolher tecnologias de sua preferência desde que cumpra os requisitos.
 O objetivo desse teste é medir o seu conhecimento sobre as ferramentas, arquitetura e 
 boas práticas de programação. 
 
-O prazo sugerido é de uma semana, caso você não complete todos as funcionalidades
-envie mesmo assim! Esse é apenas um teste de nivelamento. Sinta-se a vontade para implementar mais funcionalidades e alterações de interface.
+Você tem o prazo de 1 semana, a partir do dia posterior ao de envio. 
+Mesmo que não complete todo o teste, envie mesmo assim, 
+ele não é de caráter desclassificatório, mas sim, classificatório. 
+Sinta-se a vontade para implementar mais funcionalidades e alterações de interface. 
 
 
 # Links úteis
