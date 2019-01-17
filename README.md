@@ -16,8 +16,11 @@ já é possível **exibir** todos os produtos existentes.
 
 Faça um fork desse repositório e divida em commits os passos necessários para a
 produção do resultado final. Quando terminar abra um Pull Request 
-com o resultado, se você nunca usou git crie uma conta no gitlab ou github e 
+com o resultado, se você nunca usou git crie uma conta no gitlab e 
 dê uma olhada nos links abaixo.
+
+Se você já tem uma conta no github e não deseja criar uma nova no gitlab
+dê um fork neste repositório -> https://github.com/andressavldrs/processo-seletivo
 
 Lembre-se de adicionar um arquivo HOWTO.md descrevendo o necessário para execução 
 da aplicação e dos testes.  
