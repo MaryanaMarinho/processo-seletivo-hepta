@@ -56,6 +56,6 @@ Sinta-se a vontade para implementar mais funcionalidades e alterações de inter
     * [Javascript](https://www.w3schools.com/js/default.asp)
     * [bootstrap](https://getbootstrap.com/)
     * [W3 Bootstrap](https://www.w3schools.com/bootstrap/default.asp)
-    * [Vue JS] (https://vuejs.org/) - Uma lib JS baseada em Angular porém mais simples.
-    * [Axio] (https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html) - Lib JS recomendada para Vue JS para simplificar XMLHttpRequests.
+    * [Vue JS](https://vuejs.org/) - Uma lib JS baseada em Angular porém mais simples.
+    * [Axio](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html) - Lib JS recomendada para Vue JS para simplificar XMLHttpRequests.
 
