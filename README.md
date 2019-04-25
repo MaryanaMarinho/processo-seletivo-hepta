@@ -27,7 +27,7 @@ Vue.js no front-end, JUnit para os teste de integração e banco de dados em MyS
 
 # Avaliação
 
-O objetivo desse teste é medir o seu conhecimento sobre as boas práticas de programação, facilidade em aprender novas tecnologias e de continuar projetos já iniciados.
+O objetivo desse teste é medir o seu conhecimento sobre as boas práticas de programação, facilidade em aprender novas tecnologias e de melhorar/continuar projetos em andamento.
 
 Você tem o prazo de 1 semana, a partir do dia posterior ao de envio. 
 Mesmo que não complete todo o teste, envie mesmo assim, 
