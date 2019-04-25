@@ -19,15 +19,11 @@ produção do resultado final. Quando terminar abra um Pull Request
 com o resultado, se você nunca usou git crie uma conta no gitlab e 
 dê uma olhada nos links abaixo.
 
-Se você já tem uma conta no github e não deseja criar uma nova no gitlab
-dê um fork neste repositório -> https://github.com/andressavldrs/processo-seletivo
-
 Lembre-se de adicionar um arquivo HOWTO.md descrevendo o necessário para execução 
 da aplicação e dos testes.  
 
 Aqui a maioria das nossas aplicações são em Java no back-end, usando HTML, CSS e 
-Vue.js no front-end, JUnit para os teste de integração e banco de dados em MySQL. Você pode 
-escolher tecnologias de sua preferência desde que cumpra os requisitos.
+Vue.js no front-end, JUnit para os teste de integração e banco de dados em MySQL.
 
 # Avaliação
 
