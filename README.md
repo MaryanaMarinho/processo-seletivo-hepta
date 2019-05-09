@@ -21,7 +21,7 @@ dê uma olhada nos links abaixo.
 Lembre-se de adicionar um arquivo HOWTO.md descrevendo o necessário para execução 
 da aplicação e dos testes.  
 
-Aqui a maioria das nossas aplicações são em Java no back-end e Vue.js no front-end, JUnit para os teste de integração e banco de dados em MySQL/SQLServer.
+Trabalhamos com várias tecnologias porém a maioria dos sistemas são em Java no back-end e Vue.js no front-end, JUnit para os teste de integração.
 
 # Avaliação
 
