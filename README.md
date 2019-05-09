@@ -15,14 +15,13 @@ já é possível **exibir** todos os produtos existentes.
 # O que fazer agora
 
 Faça um clone desse projeto e divida em commits os passos necessários para a
-produção do resultado final. Quando terminar envie o link do projeto do seu repositório para gustavo.oliveira@hepta.com.br, se você nunca usou git crie uma conta no gitlab e 
+produção do resultado final. Quando terminar envie o link do projeto no seu repositório para gustavo.oliveira@hepta.com.br com o título "Processo seletivo - [seu nome]", se você nunca usou git crie uma conta no gitlab e 
 dê uma olhada nos links abaixo.
 
 Lembre-se de adicionar um arquivo HOWTO.md descrevendo o necessário para execução 
 da aplicação e dos testes.  
 
-Aqui a maioria das nossas aplicações são em Java no back-end, usando HTML, CSS e 
-Vue.js no front-end, JUnit para os teste de integração e banco de dados em MySQL.
+Aqui a maioria das nossas aplicações são em Java no back-end e Vue.js no front-end, JUnit para os teste de integração e banco de dados em MySQL/SQLServer.
 
 # Avaliação
 
