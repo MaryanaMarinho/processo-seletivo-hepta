@@ -23,6 +23,8 @@ import com.hepta.mercado.entity.Produto;
 import com.hepta.mercado.persistence.ProdutoDAO;
 
 @Path("/produtos")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class ProdutoService {
 	
 	@Context
