@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.hepta.mercado.entity.Produto;
+import com.hepta.mercado.domain.Produto;
 
 public class ProdutoDAO {
 

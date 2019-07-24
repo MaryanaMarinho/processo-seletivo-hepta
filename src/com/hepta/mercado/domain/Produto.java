@@ -1,4 +1,4 @@
-package com.hepta.mercado.entity;
+package com.hepta.mercado.domain;
 
 import java.io.Serializable;
 

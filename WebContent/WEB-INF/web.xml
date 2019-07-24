@@ -12,7 +12,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>com.hepta.mercado.rest</param-value>
+            <param-value>com.hepta.mercado.resources</param-value>
         </init-param>
         <init-param>
           <param-name>jersey.config.server.provider.classnames</param-name>
@@ -23,7 +23,7 @@
     
     <servlet-mapping>
         <servlet-name>Jersey Servlet</servlet-name>
-        <url-pattern>/rs/*</url-pattern>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
     
     <session-config>

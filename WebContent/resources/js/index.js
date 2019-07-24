@@ -16,8 +16,8 @@ var inicio = new Vue({
     },
     methods:{
         buscaProdutos: function(){
-			const vm = this;
-			axios.get("/mercado/rs/produtos")
+			const vm = this
+			axios.get("/mercado/rest/produtos")
 			.then(response => {
 				vm.listaProdutos = response.data;
 			}).catch(function (error) {

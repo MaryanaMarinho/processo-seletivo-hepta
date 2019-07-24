@@ -1,4 +1,4 @@
-package com.hepta.mercado.rest;
+package com.hepta.mercado.resources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +19,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.hepta.mercado.entity.Produto;
+import com.hepta.mercado.domain.Produto;
 import com.hepta.mercado.persistence.ProdutoDAO;
 
 @Path("/produtos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ProdutoService {
+public class ProdutoResource {
 	
 	@Context
 	private HttpServletRequest request;
@@ -35,7 +35,7 @@ public class ProdutoService {
 
 	private ProdutoDAO dao;
 	
-	public ProdutoService() {
+	public ProdutoResource() {
 		dao = new ProdutoDAO();
 	}
 	
