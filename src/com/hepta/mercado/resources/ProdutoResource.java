@@ -3,6 +3,10 @@ package com.hepta.mercado.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
@@ -21,10 +25,9 @@ import javax.ws.rs.core.Response.Status;
 
 import com.hepta.mercado.domain.Produto;
 import com.hepta.mercado.persistence.ProdutoDAO;
+import com.hepta.mercado.services.ProdutoService;
 
 @Path("/produtos")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class ProdutoResource {
 	
 	@Context
@@ -33,14 +36,51 @@ public class ProdutoResource {
 	@Context
 	private HttpServletResponse response;
 
-	private ProdutoDAO dao;
+//	private ProdutoDAO dao;
+//	
+//	public ProdutoResource() {
+//		dao = new ProdutoDAO();
+//	}
+	
+//	@Inject
+//	private ProdutoService service;
+	
+	private ProdutoService service;
 	
 	public ProdutoResource() {
-		dao = new ProdutoDAO();
+		service = new ProdutoService();
 	}
+	
+	
 	
 	protected void setRequest(HttpServletRequest request) {
 		this.request = request;
+	}
+	
+	/**
+	 * Lista todos os produtos do mercado
+	 * 
+	 * @return response 200 (OK) - Conseguiu listar
+	 */
+	@Path("/")
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	public Response getProduto() {
+		
+		List<Produto> produtos = new ArrayList<>();
+		
+		try {
+			
+			produtos = service.findAll();
+			
+		} catch(Exception e) {
+			
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao buscar produtos").build();
+		}
+		
+		GenericEntity<List<Produto>> entity = new GenericEntity<List<Produto>>(produtos) {};
+		
+		return Response.status(Status.OK).entity(entity).build();
 	}
 	
 	/**
@@ -57,25 +97,7 @@ public class ProdutoResource {
 		return Response.status(Status.NOT_IMPLEMENTED).build();
 	}
 	
-	/**
-	 * Lista todos os produtos do mercado
-	 * 
-	 * @return response 200 (OK) - Conseguiu listar
-	 */
-	@Path("/")
-	@Produces(MediaType.APPLICATION_JSON)
-	@GET
-	public Response produtoRead() {
-		List<Produto> produtos = new ArrayList<>();
-		try {
-			produtos = dao.getAll();
-		} catch(Exception e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao buscar produtos").build();
-		}
-		
-		GenericEntity<List<Produto>> entity = new GenericEntity<List<Produto>>(produtos) {};
-		return Response.status(Status.OK).entity(entity).build();
-	}
+	
 	
 	/**
 	 * Atualiza um produto no mercado
