@@ -34,11 +34,13 @@ public class ProdutoService {
         obj.setId(null);
 
         dao.save(obj);
+        
     }
 
     public void update(Produto obj) throws Exception {
 
         Produto newObj =  find(obj.getId());
+        updateData(newObj, obj);
 
         dao.update(newObj);
     }
@@ -55,6 +57,14 @@ public class ProdutoService {
     public List<Produto> findAll() throws Exception {
 
         return dao.getAll();
+    }
+    
+    private void updateData(Produto newObj, Produto obj) {
+        newObj.setNome(obj.getNome());
+        newObj.setEstoque(obj.getEstoque());
+        newObj.setFabricante(obj.getFabricante());
+        newObj.setUnidade(obj.getUnidade());
+        newObj.setVolume(obj.getVolume());
     }
 
 }

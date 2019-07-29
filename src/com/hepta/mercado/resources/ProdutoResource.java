@@ -1,5 +1,6 @@
 package com.hepta.mercado.resources;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -22,6 +24,7 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.UriInfo;
 
 import com.hepta.mercado.domain.Produto;
 import com.hepta.mercado.persistence.ProdutoDAO;
@@ -35,6 +38,8 @@ public class ProdutoResource {
 
 	@Context
 	private HttpServletResponse response;
+	
+	UriInfo uriInfo;
 
 //	private ProdutoDAO dao;
 //	
@@ -88,13 +93,30 @@ public class ProdutoResource {
 	 * 
 	 * @param produto: Novo produto
 	 * @return response 200 (OK) - Conseguiu adicionar
+	 * @throws Exception 
 	 */
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
-	public Response produtoCreate(Produto produto) {
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+	public Response produtoCreate(Produto produto) throws Exception {
+		
+		try {
+			service.insert(produto);
+			
+		} catch (Exception e) {
+			
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao inserir um produto").build();
+		}
+		
+		
+		
+		//URI uri = uriInfo.getAbsolutePathBuilder().path(id).build();
+		
+		//return Response.created(uri).build();
+		
+		return Response.status(Status.CREATED).entity(produto).build();
+		
 	}
 	
 	
@@ -111,7 +133,18 @@ public class ProdutoResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@PUT
 	public Response produtoUpdate(@PathParam("id") Integer id, Produto produto) {
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+		
+		try {
+			
+			produto.setId(id);
+			service.update(produto);
+			
+		} catch (Exception e) {
+			
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao atualizar o produto").build();
+		}
+		
+		return Response.noContent().build();
 	}
 	
 	/**
@@ -124,7 +157,16 @@ public class ProdutoResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@DELETE
 	public Response produtoDelete(@PathParam("id") Integer id) {
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+		
+		try {
+			service.delete(id);
+			
+		} catch (Exception e) {
+			
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao deletar o produto").build();
+		}
+		
+		return Response.noContent().build();
 	}
 
 }
