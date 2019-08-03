@@ -8,33 +8,152 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-vue.css" />
 </head>
 
-<body>
-	<div id="inicio" class="container-fluid table">
-		<h4>Lista de Produtos</h4>
-		<table>
-			<tr>
-				<th>Nome</th>
-				<th>Fabricante</th>
-				<th>Volume</th>
-				<th>Unidade</th>
-				<th>Estoque</th>
-				<th></th>
-				<th></th>
-			</tr>
-			<tbody id="event-table">
-				<tr v-for="produto in listaProdutos">
-					<td>{{ produto.nome }}</td>
-					<td>{{ produto.fabricante.nome }}</td>
-					<td>{{ produto.volume }}</td>
-					<td>{{ produto.unidade }}</td>
-					<td>{{ produto.estoque }}</td>
-					<td>
-						<span @click="">&#9998;</span>
-						<span @click="">&#10006;</span>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+<body class="">
+	<div id="inicio">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand custom-action-link" href="#saldacao" @click="setNavBar('saldacao')">Mercadinho</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link custom-action-link" href="#produto"
+						@click="setNavBar('produto')">Produtos</a>
+					<a class="nav-item nav-link custom-action-link" href="#fabricante"
+						@click="setNavBar('fabricante')">Fabricante</a>
+				</div>
+			</div>
+		</nav>
+
+		<div id="saldacao" value="saldacao" v-if="aba === 'saldacao'">
+			<br><br><br><br>
+			<h3 class="text-center text-monospace">Seja bem vindo ao Mercadinho!!</h3>
+			<br><br><br>
+			<h5 class="text-center text-monospace">
+				Selecione uma das opções do menu acima.
+			</h5>
+		</div>
+
+		<!-- Produto -->
+
+		<div id="produto" class="container-fluid col col-sm-8 col-md-8 col-lg-8 col-xl-8" value="produto"
+			v-if="aba === 'produto'">
+
+			<br><br><br>
+			<form>
+				<h5>Cadastro de Produto</h5>
+				<br>
+				<div  class="form-row">
+					<div class="form-group col-md-7 mb-7 ">
+						<label for="nomeProduto">Nome</label>
+						<input type="text" 
+						class="form-control" 
+						id="nomeProduto" 
+						placeholder="Digite o nome do produto" 
+						v-model="produto.nome"/>
+					</div>
+					<div class="form-group col-md-5 mb-5">
+						<label for="nomeFabricante">Fabricante</label>
+						<select class="custom-select form-control" v-model="produto.fabricante">
+							<option selected>Selecione o Fabricante</option>
+							<option v-for="fabricante in listaFabricantes" 
+							:value="fabricante"> 
+							{{fabricante.nome}} </option>
+						</select>
+					</div>
+				</div>
+				<div  class="form-row">
+					<div class="form-group col-md-4 mb-4">
+						<label for="volumeProduto">Volume</label>
+						<input type="number" 
+						class="form-control" 
+						id="volumeProduto" 
+						placeholder="Digite o volume" 
+						v-model="produto.volume"/>
+					</div>
+					<div class="form-group col-md-4 mb-4">
+						<label for="unidadeProduto">Unidade</label>
+						<input type="text" 
+						class="form-control" 
+						id="unidadeProduto" 
+						placeholder="Digite a unidade" 
+						v-model="produto.unidade"/>
+					</div>
+					<div class="form-group col-md-4 mb-4">
+						<label for="estoqueProduto">Estoque</label>
+						<input type="number" 
+						class="form-control" 
+						id="estoqueProduto"
+						placeholder="Digite a quantidade no estoque" 
+						v-model="produto.estoque"/>
+					</div>
+				</div>
+				
+				<div >
+					<button type="submit" class="btn btn-outline-secondary btn-lg btn-block"
+					@click="inserirProduto()"
+					>Cadastrar</button>
+				</div>
+				
+			</form>
+
+			<br><br><br>
+			<h4 class="text-center">Lista de Produtos</h4>
+			<div class="row justify-content-center align-items-center h-100 ">
+				<table class="table table-hover">
+					<thead class="thead-light">
+						<tr>
+							<th>Nome</th>
+							<th>Fabricante</th>
+							<th>Volume</th>
+							<th>Unidade</th>
+							<th>Estoque</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="event-table">
+						<tr v-for="produto in listaProdutos">
+							<td>{{ produto.nome }}</td>
+							<td>{{ produto.fabricante.nome }}</td>
+							<td>{{ produto.volume }}</td>
+							<td>{{ produto.unidade }}</td>
+							<td>{{ produto.estoque }}</td>
+							<td><span @click="">&#9998;</span></td>
+							<td><span @click="">&#10006;</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- Fabricante -->
+
+		<div id="fabricante" class="container-fluid col col-sm-8 col-md-8 col-lg-8 col-xl-8" value="fabricante"
+			v-if="aba === 'fabricante'">
+			<h4 class="text-center">Lista de Fabricantes</h4>
+			<div class="row justify-content-center align-items-center h-100 ">
+				<table class="table table-hover">
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="event-table">
+						<tr v-for="fabricante in listaFabricantes">
+							<td>{{ fabricante.id }}</td>
+							<td>{{ fabricante.nome }}</td>
+							<td><span @click="">&#9998;</span></td>
+							<td><span @click="">&#10006;</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 
 	<script src="resources/js/vue.js"></script>
