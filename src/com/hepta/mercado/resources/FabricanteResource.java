@@ -21,6 +21,7 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import com.hepta.mercado.domain.Fabricante;
+import com.hepta.mercado.domain.Fabricante;
 import com.hepta.mercado.services.FabricanteService;
 
 @Path("/fabricantes")
@@ -43,6 +44,32 @@ public class FabricanteResource {
 	
 	protected void setRequest(HttpServletRequest request) {
 		this.request = request;
+	}
+	
+	/**
+	 * Pega um fabricante do mercado
+	 * 
+	 * @return response 200 (OK) - Conseguiu pegar
+	 */
+	@Path("fabricante/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	public Response getFabricante(@PathParam("id") Integer id) {
+		
+		Fabricante fabricante;
+		
+		try {
+			
+			fabricante = service.find(id);
+			
+		} catch(Exception e) {
+			
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao buscar fabricante").build();
+		}
+		
+		GenericEntity<Fabricante> entity = new GenericEntity<Fabricante>(fabricante) {};
+		
+		return Response.status(Status.OK).entity(entity).build();
 	}
 	
 	/**

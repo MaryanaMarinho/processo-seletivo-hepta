@@ -13,6 +13,7 @@ var inicio = new Vue({
 				{sortable: false, key: "unidade", label:"Unidade"},
 				{sortable: false, key: "estoque", label:"Estoque"}
 			],
+			fabricante: {},
 			listaFabricantes: [],
 			listaFabricantesHeader: [
 				{ sortable: false, key: "id", label: "Id" },
@@ -55,7 +56,7 @@ var inicio = new Vue({
 				})
 				.finally(function () {
 					vm.buscaProdutos();
-					vm.limpar();
+					vm.limparProduto();
 				});
 		},
 		deletarProduto: function (id) {
@@ -99,7 +100,6 @@ var inicio = new Vue({
 				})
 		},
 
-
 		buscaFabricantes: function () {
 			const vm = this
 			axios.get("/mercado/rest/fabricantes")
@@ -112,8 +112,67 @@ var inicio = new Vue({
 				.finally(function () {
 				});
 		},
-		limpar: function () {
+		inserirFabricante: function () {
+			const vm = this
+			axios.post("/mercado/rest/fabricantes", this.fabricante)
+				.then(response => {
+					alert("Fabricante cadastrado");
+				})
+				.catch(function (error) {
+					console.log(error);
+					alert("Erro ao cadastrar o fabricante ");
+				})
+				.finally(function () {
+					vm.buscaFabricantes();
+					vm.limparFabricante();
+				});
+		},
+		deletarFabricante: function (id) {
+			const vm = this;
+			axios.delete("/mercado/rest/fabricantes/" + id)
+				.then(response => {
+					alert("Fabricante removido com sucesso!");
+				})
+				.catch(function (error) {
+					console.log(error);
+					alert("Erro ao remover fabricante");
+				}).finally(function () {
+					vm.buscaFabricantes();
+				});
+		},
+		editarFabricante: function (id) {
+			const vm = this;
+			axios.get("/mercado/rest/fabricantes/fabricante/" + id)
+				.then(function (response) {
+					vm.fabricante = response.data;
+					vm.formPreenchido = true;
+				})
+				.catch(function (error) {
+					console.log(error);
+					alert("Erro ao editar fabricante.");
+				});
+		},
+		salvarEdicaoFabricante: function () {
+			const vm = this;
+			axios.put("/mercado/rest/fabricantes/" + this.fabricante.id, this.fabricante)
+				.then(function (response) {
+					alert("Fabricante editado com sucesso.");
+				})
+				.catch(function (error) {
+					alert("Erro ao editar fabricante.");
+				})
+				.finally(function () {
+					vm.fabricante = {};
+					vm.buscaFabricantes();
+					vm.formPreenchido = false
+				})
+		},
+		limparProduto: function () {
 			this.produto = {}
+			this.formPreenchido = false
+		},
+		limparFabricante: function () {
+			this.fabricante = {}
 			this.formPreenchido = false
 		}
 

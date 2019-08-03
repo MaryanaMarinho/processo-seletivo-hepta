@@ -31,6 +31,8 @@
 			<br><br><br><br>
 			<h3 class="text-center text-monospace">Seja bem vindo ao Mercadinho!!</h3>
 			<br><br><br>
+			<h1 class="text-center"><i class="fas fa-shopping-basket"></i></h1>
+			<br><br><br>
 			<h5 class="text-center text-monospace">
 				Selecione uma das opções do menu acima.
 			</h5>
@@ -45,67 +47,49 @@
 			<form>
 				<h5>Cadastro de Produto</h5>
 				<br>
-				<div  class="form-row">
+				<div class="form-row">
 					<div class="form-group col-md-7 mb-7 ">
 						<label for="nomeProduto">Nome</label>
-						<input type="text" 
-						class="form-control" 
-						id="nomeProduto" 
-						placeholder="Digite o nome do produto" 
-						v-model="produto.nome"/>
+						<input type="text" class="form-control" id="nomeProduto" placeholder="Digite o nome do produto"
+							v-model="produto.nome" />
 					</div>
 					<div class="form-group col-md-5 mb-5">
-						<label for="nomeFabricante">Fabricante</label>
+						<label for="nomeFabricante">Selecione o Fabricante</label>
 						<select class="custom-select form-control" v-model="produto.fabricante">
-							<option selected>Selecione o Fabricante</option>
-							<option v-for="fabricante in listaFabricantes" 
-							:value="fabricante"> 
-							{{fabricante.nome}} </option>
+							<option v-for="fabricante in listaFabricantes" :value="fabricante">
+								{{fabricante.nome}} </option>
 						</select>
 					</div>
 				</div>
-				<div  class="form-row">
+				<div class="form-row">
 					<div class="form-group col-md-4 mb-4">
 						<label for="volumeProduto">Volume</label>
-						<input type="number" 
-						class="form-control" 
-						id="volumeProduto" 
-						placeholder="Digite o volume" 
-						v-model="produto.volume"/>
+						<input type="number" class="form-control" id="volumeProduto" placeholder="Digite o volume"
+							v-model="produto.volume" />
 					</div>
 					<div class="form-group col-md-4 mb-4">
 						<label for="unidadeProduto">Unidade</label>
-						<input type="text" 
-						class="form-control" 
-						id="unidadeProduto" 
-						placeholder="Digite a unidade" 
-						v-model="produto.unidade"/>
+						<input type="text" class="form-control" id="unidadeProduto" placeholder="Digite a unidade"
+							v-model="produto.unidade" />
 					</div>
 					<div class="form-group col-md-4 mb-4">
 						<label for="estoqueProduto">Estoque</label>
-						<input type="number" 
-						class="form-control" 
-						id="estoqueProduto"
-						placeholder="Digite a quantidade no estoque" 
-						v-model="produto.estoque"/>
+						<input type="number" class="form-control" id="estoqueProduto"
+							placeholder="Digite a quantidade no estoque" v-model="produto.estoque" />
 					</div>
 				</div>
-				
-				<div >
-					<button type="submit" class="btn btn-outline-secondary btn-lg btn-block"
-					@click="inserirProduto()"
-					v-if="!formPreenchido"
-					>Cadastrar
+
+				<div>
+					<button type="submit" class="btn btn-outline-secondary btn-lg btn-block" @click="inserirProduto()"
+						v-if="!formPreenchido">Cadastrar
 					</button>
 				</div>
-				<div >
-					<button type="submit" class="btn btn-outline-secondary btn-lg btn-block"
-					@click="salvarEdicao()"
-					v-if="formPreenchido"
-					>Alterar
+				<div>
+					<button type="submit" class="btn btn-outline-secondary btn-lg btn-block" @click="salvarEdicao()"
+						v-if="formPreenchido">Alterar
 					</button>
 				</div>
-				
+
 			</form>
 
 			<br><br><br>
@@ -131,18 +115,12 @@
 							<td>{{ produto.unidade }}</td>
 							<td>{{ produto.estoque }}</td>
 							<td>
-								<button 
-								type="submit" 
-								class="btn btn-outline-dark"
-								@click="editarProduto(produto.id)">
+								<button type="submit" class="btn btn-outline-dark" @click="editarProduto(produto.id)">
 									<i class="far fa-edit"></i>
 								</button>
 							</td>
 							<td>
-								<button 
-									type="submit" 
-									class="btn btn-outline-dark"
-									@click="deletarProduto(produto.id)">
+								<button type="submit" class="btn btn-outline-dark" @click="deletarProduto(produto.id)">
 									<i class="far fa-trash-alt"></i>
 								</button>
 							</td>
@@ -156,6 +134,32 @@
 
 		<div id="fabricante" class="container-fluid col col-sm-6 col-md-6 col-lg-6 col-xl-6" value="fabricante"
 			v-if="aba === 'fabricante'">
+
+			<br><br><br>
+			<form>
+				<h5>Cadastro de Fabricante</h5>
+				<br>
+				<div class="form-row">
+					<div class="form-group col-md-7 mb-7 ">
+						<label for="nomeDoFabricante">Nome</label>
+						<input type="text" class="form-control" id="nomeDoFabricante" placeholder="Digite o nome do fabricante"
+							v-model="fabricante.nome" />
+					</div>
+					<div class="form-group col-md-5 mb-5 ">
+						<label></label>
+						<button type="submit" class="btn btn-outline-secondary btn-lg btn-block" @click="inserirFabricante()"
+							v-if="!formPreenchido">Cadastrar
+						</button>
+
+						<button type="submit" class="btn btn-outline-secondary btn-lg btn-block" @click="salvarEdicaoFabricante()"
+							v-if="formPreenchido">Alterar
+						</button>
+					</div>
+				</div>
+			</form>
+
+			<br><br><br>
+
 			<h4 class="text-center">Lista de Fabricantes</h4>
 			<div class="row justify-content-center align-items-center h-100 ">
 				<table class="table table-hover">
@@ -171,8 +175,16 @@
 						<tr v-for="fabricante in listaFabricantes">
 							<td>{{ fabricante.id }}</td>
 							<td>{{ fabricante.nome }}</td>
-							<td><span @click="">&#9998;</span></td>
-							<td><span @click="">&#10006;</span></td>
+							<td>
+								<button type="submit" class="btn btn-outline-dark" @click="editarFabricante(fabricante.id)">
+									<i class="far fa-edit"></i>
+								</button>
+							</td>
+							<td>
+								<button type="submit" class="btn btn-outline-dark" @click="deletarFabricante(fabricante.id)">
+									<i class="far fa-trash-alt"></i>
+								</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>
