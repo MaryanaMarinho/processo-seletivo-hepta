@@ -6,6 +6,7 @@
 	<title>Inventário Mercadinho - Início</title>
 	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-vue.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 </head>
 
 <body class="">
@@ -37,7 +38,7 @@
 
 		<!-- Produto -->
 
-		<div id="produto" class="container-fluid col col-sm-8 col-md-8 col-lg-8 col-xl-8" value="produto"
+		<div id="produto" class="container-fluid col col-sm-6 col-md-6 col-lg-6 col-xl-6" value="produto"
 			v-if="aba === 'produto'">
 
 			<br><br><br>
@@ -93,7 +94,16 @@
 				<div >
 					<button type="submit" class="btn btn-outline-secondary btn-lg btn-block"
 					@click="inserirProduto()"
-					>Cadastrar</button>
+					v-if="!formPreenchido"
+					>Cadastrar
+					</button>
+				</div>
+				<div >
+					<button type="submit" class="btn btn-outline-secondary btn-lg btn-block"
+					@click="salvarEdicao()"
+					v-if="formPreenchido"
+					>Alterar
+					</button>
 				</div>
 				
 			</form>
@@ -120,8 +130,22 @@
 							<td>{{ produto.volume }}</td>
 							<td>{{ produto.unidade }}</td>
 							<td>{{ produto.estoque }}</td>
-							<td><span @click="">&#9998;</span></td>
-							<td><span @click="">&#10006;</span></td>
+							<td>
+								<button 
+								type="submit" 
+								class="btn btn-outline-dark"
+								@click="editarProduto(produto.id)">
+									<i class="far fa-edit"></i>
+								</button>
+							</td>
+							<td>
+								<button 
+									type="submit" 
+									class="btn btn-outline-dark"
+									@click="deletarProduto(produto.id)">
+									<i class="far fa-trash-alt"></i>
+								</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -130,7 +154,7 @@
 
 		<!-- Fabricante -->
 
-		<div id="fabricante" class="container-fluid col col-sm-8 col-md-8 col-lg-8 col-xl-8" value="fabricante"
+		<div id="fabricante" class="container-fluid col col-sm-6 col-md-6 col-lg-6 col-xl-6" value="fabricante"
 			v-if="aba === 'fabricante'">
 			<h4 class="text-center">Lista de Fabricantes</h4>
 			<div class="row justify-content-center align-items-center h-100 ">

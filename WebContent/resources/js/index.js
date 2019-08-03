@@ -17,7 +17,8 @@ var inicio = new Vue({
 			listaFabricantesHeader: [
 				{ sortable: false, key: "id", label: "Id" },
 				{ sortable: false, key: "nome", label: "Nome" }
-			]
+			],
+			formPreenchido: false
 		}
     },
     created: function(){
@@ -46,16 +47,59 @@ var inicio = new Vue({
 			const vm = this
 			axios.post("/mercado/rest/produtos", this.produto)
 				.then(response => {
-					alert("Sucesso! Produto cadastrado");
+					alert("Produto cadastrado");
 				})
 				.catch(function (error) {
 					console.log(error);
-					alert("Erro interno. Erro ao cadastrar o produto ");
+					alert("Erro ao cadastrar o produto ");
 				})
 				.finally(function () {
 					vm.buscaProdutos();
+					vm.limpar();
 				});
 		},
+		deletarProduto: function (id) {
+			const vm = this;
+			axios.delete("/mercado/rest/produtos/" + id)
+				.then(response => {
+					alert("Produto removido com sucesso!");
+				})
+				.catch(function (error) {
+					console.log(error);
+					alert("Erro ao remover produto");
+				}).finally(function () {
+					vm.buscaProdutos();
+				});
+		},
+		editarProduto: function (id) {
+			const vm = this;
+			axios.get("/mercado/rest/produtos/produto/" + id)
+				.then(function (response) {
+					vm.produto = response.data;
+					vm.formPreenchido = true;
+				})
+				.catch(function (error) {
+					console.log(error);
+					alert("Erro ao editar produto.");
+				});
+		},
+		salvarEdicao: function () {
+			const vm = this;
+			axios.put("/mercado/rest/produtos/" + this.produto.id, this.produto)
+				.then(function (response) {
+					alert("Produto editado com sucesso.");
+				})
+				.catch(function (error) {
+					alert("Erro ao editar produto.");
+				})
+				.finally(function () {
+					vm.produto = {};
+					vm.buscaProdutos();
+					vm.formPreenchido = false
+				})
+		},
+
+
 		buscaFabricantes: function () {
 			const vm = this
 			axios.get("/mercado/rest/fabricantes")
@@ -68,6 +112,10 @@ var inicio = new Vue({
 				.finally(function () {
 				});
 		},
+		limpar: function () {
+			this.produto = {}
+			this.formPreenchido = false
+		}
 
     }
 });

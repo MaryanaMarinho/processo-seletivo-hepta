@@ -63,6 +63,32 @@ public class ProdutoResource {
 	}
 	
 	/**
+	 * Pega um produto do mercado
+	 * 
+	 * @return response 200 (OK) - Conseguiu pegar
+	 */
+	@Path("produto/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	public Response getProduto(@PathParam("id") Integer id) {
+		
+		Produto produto;
+		
+		try {
+			
+			produto = service.find(id);
+			
+		} catch(Exception e) {
+			
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao buscar produto").build();
+		}
+		
+		GenericEntity<Produto> entity = new GenericEntity<Produto>(produto) {};
+		
+		return Response.status(Status.OK).entity(entity).build();
+	}
+	
+	/**
 	 * Lista todos os produtos do mercado
 	 * 
 	 * @return response 200 (OK) - Conseguiu listar
@@ -70,7 +96,7 @@ public class ProdutoResource {
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
-	public Response getProduto() {
+	public Response getProdutos() {
 		
 		List<Produto> produtos = new ArrayList<>();
 		
